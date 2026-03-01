@@ -625,7 +625,7 @@
             margin-top: 15px;
         }
 
-        /* ===== CONTACT SECTION - FIXED ===== */
+        /* ===== CONTACT SECTION ===== */
         .contact-section {
             background: linear-gradient(135deg, rgba(0, 168, 255, 0.05), rgba(138, 43, 226, 0.05));
         }
@@ -683,7 +683,7 @@
             color: var(--nova-purple);
         }
 
-        /* ===== FORM - FIXED ===== */
+        /* ===== FORM - FIXED WITH FORMSUBMIT ===== */
         .form-container {
             background: var(--card-bg);
             border: 1px solid var(--border-glow);
@@ -735,7 +735,6 @@
             border-color: var(--nova-purple);
         }
 
-        /* FIXED: Select dropdown styling */
         .form-group select {
             cursor: pointer;
             appearance: none;
@@ -1156,7 +1155,7 @@
         </div>
     </section>
 
-    <!-- Contact Section - FIXED -->
+    <!-- Contact Section - FIXED WITH FORMSUBMIT -->
     <section id="contact" class="contact-section">
         <div class="container">
             <div class="contact-wrapper">
@@ -1200,46 +1199,53 @@
                 <div class="form-container" data-aos="fade-left">
                     <h3>Send Us a Message</h3>
                     
-                    <form id="contactForm">
+                    <!-- FORM SUBMIT INTEGRATION - Sends to itsaknova@gmail.com -->
+                    <form action="https://formsubmit.co/itsaknova@gmail.com" method="POST" id="contactForm">
+                        <!-- FormSubmit Configuration -->
+                        <input type="hidden" name="_subject" value="New Lead from Nova X Growth Website!">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_next" value="https://novaxgrowth.com/thankyou.html">
+                        <input type="hidden" name="_autoresponse" value="Thank you for contacting Nova X Growth! We'll get back to you within 24 hours.">
+                        
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="firstName">First Name *</label>
-                                <input type="text" id="firstName" placeholder="John" required>
+                                <input type="text" id="firstName" name="First Name" placeholder="John" required>
                             </div>
                             <div class="form-group">
                                 <label for="lastName">Last Name</label>
-                                <input type="text" id="lastName" placeholder="Doe">
+                                <input type="text" id="lastName" name="Last Name" placeholder="Doe">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="email">Email Address *</label>
-                            <input type="email" id="email" placeholder="john@example.com" required>
+                            <input type="email" id="email" name="Email" placeholder="john@example.com" required>
                         </div>
 
                         <div class="form-group">
                             <label for="phone">Phone Number *</label>
-                            <input type="tel" id="phone" placeholder="+91 98765 43210" required>
+                            <input type="tel" id="phone" name="Phone" placeholder="+91 98765 43210" required>
                         </div>
 
-                        <!-- FIXED: Service Interested In dropdown -->
                         <div class="form-group">
                             <label for="service">Service Interested In *</label>
-                            <select id="service" name="service" required>
+                            <select id="service" name="Service Interested In" required>
                                 <option value="" disabled selected>-- Select a service --</option>
-                                <option value="facebook-ads">Facebook Ads</option>
-                                <option value="instagram-ads">Instagram Ads</option>
-                                <option value="google-ads">Google Ads</option>
-                                <option value="web-development">Web Development</option>
-                                <option value="landing-pages">Landing Pages</option>
-                                <option value="video-editing">Video Editing</option>
-                                <option value="multiple">Multiple Services</option>
+                                <option value="Facebook Ads">Facebook Ads</option>
+                                <option value="Instagram Ads">Instagram Ads</option>
+                                <option value="Google Ads">Google Ads</option>
+                                <option value="Web Development">Web Development</option>
+                                <option value="Landing Pages">Landing Pages</option>
+                                <option value="Video Editing">Video Editing</option>
+                                <option value="Multiple Services">Multiple Services</option>
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label for="message">Message *</label>
-                            <textarea id="message" placeholder="Tell us about your project requirements..." required></textarea>
+                            <textarea id="message" name="Message" placeholder="Tell us about your project requirements..." required></textarea>
                         </div>
 
                         <button type="submit" class="submit-btn">
@@ -1354,26 +1360,8 @@
             });
         });
 
-        // Form submission
-        document.getElementById('contactForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const btn = this.querySelector('.submit-btn');
-            const status = document.getElementById('formStatus');
-            
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            btn.disabled = true;
-
-            await new Promise(r => setTimeout(r, 1500));
-
-            status.className = 'form-status success';
-            status.innerHTML = 'Thank you! We\'ll contact you within 24 hours.';
-            this.reset();
-
-            btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
-            btn.disabled = false;
-
-            setTimeout(() => status.style.display = 'none', 5000);
-        });
+        // Form submission with FormSubmit - No additional JS needed
+        // FormSubmit handles everything automatically
     </script>
 </body>
 </html>
