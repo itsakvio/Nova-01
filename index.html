@@ -186,7 +186,7 @@
             .whatsapp-float a { font-size: 35px; }
         }
 
-        /* ===== NAVIGATION - PERFECT FIX ===== */
+        /* ===== NAVIGATION ===== */
         .navbar {
             background: rgba(11, 15, 26, 0.95);
             backdrop-filter: blur(10px);
@@ -211,7 +211,6 @@
             align-items: center;
         }
 
-        /* Desktop Navigation */
         .nav-links {
             display: flex;
             gap: 30px;
@@ -263,7 +262,7 @@
             display: none;
         }
 
-        /* Hamburger Menu - Hidden on Desktop */
+        /* Hamburger Menu */
         .hamburger {
             display: none;
             flex-direction: column;
@@ -280,7 +279,6 @@
             border-radius: 3px;
         }
 
-        /* Mobile Styles */
         @media (max-width: 768px) {
             .hamburger {
                 display: flex;
@@ -627,7 +625,7 @@
             margin-top: 15px;
         }
 
-        /* ===== CONTACT SECTION ===== */
+        /* ===== CONTACT SECTION - FIXED ===== */
         .contact-section {
             background: linear-gradient(135deg, rgba(0, 168, 255, 0.05), rgba(138, 43, 226, 0.05));
         }
@@ -685,12 +683,17 @@
             color: var(--nova-purple);
         }
 
-        /* ===== FORM ===== */
+        /* ===== FORM - FIXED ===== */
         .form-container {
             background: var(--card-bg);
             border: 1px solid var(--border-glow);
             border-radius: 20px;
             padding: 35px;
+        }
+
+        .form-container h3 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
         }
 
         .form-group {
@@ -699,20 +702,23 @@
 
         .form-group label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             font-weight: 500;
+            color: var(--soft-white);
         }
 
         .form-group input,
         .form-group select,
         .form-group textarea {
             width: 100%;
-            padding: 12px 15px;
+            padding: 14px 16px;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(0, 168, 255, 0.2);
             border-radius: 10px;
             color: var(--soft-white);
             font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
         }
 
         .form-group input:focus,
@@ -720,6 +726,34 @@
         .form-group textarea:focus {
             outline: none;
             border-color: var(--electric-blue);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .form-group input:hover,
+        .form-group select:hover,
+        .form-group textarea:hover {
+            border-color: var(--nova-purple);
+        }
+
+        /* FIXED: Select dropdown styling */
+        .form-group select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300A8FF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 16px;
+        }
+
+        .form-group select option {
+            background: var(--dark-navy);
+            color: var(--soft-white);
+            padding: 12px;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
         }
 
         .form-row {
@@ -731,7 +765,7 @@
         .submit-btn {
             background: var(--gradient-primary);
             color: white;
-            padding: 15px 30px;
+            padding: 16px 30px;
             border: none;
             border-radius: 10px;
             font-size: 1rem;
@@ -752,12 +786,20 @@
             border-radius: 8px;
             display: none;
             text-align: center;
+            font-weight: 500;
         }
 
         .form-status.success {
             background: rgba(37, 211, 102, 0.2);
             border: 1px solid #25D366;
             color: #25D366;
+            display: block;
+        }
+
+        .form-status.error {
+            background: rgba(255, 78, 205, 0.2);
+            border: 1px solid var(--accent-pink);
+            color: var(--accent-pink);
             display: block;
         }
 
@@ -892,6 +934,10 @@
                 flex-direction: column;
                 text-align: center;
             }
+
+            .contact-icon {
+                margin-bottom: 10px;
+            }
         }
     </style>
 </head>
@@ -904,7 +950,7 @@
         </a>
     </div>
 
-    <!-- Navigation - PERFECTLY FIXED -->
+    <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="container nav-container">
             <div class="logo-text">Nova X Growth</div>
@@ -1110,7 +1156,7 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact Section - FIXED -->
     <section id="contact" class="contact-section">
         <div class="container">
             <div class="contact-wrapper">
@@ -1122,7 +1168,7 @@
                         <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
                         <div class="contact-text">
                             <h4>Call Us</h4>
-                            <p><a href="tel:+919905939784">+91 9905939784 </a></p>
+                            <p><a href="tel:+919905939784">+91 9905939784</a></p>
                         </div>
                     </div>
 
@@ -1152,7 +1198,7 @@
                 </div>
 
                 <div class="form-container" data-aos="fade-left">
-                    <h3 style="font-size: 1.8rem; margin-bottom: 25px;">Send Us a Message</h3>
+                    <h3>Send Us a Message</h3>
                     
                     <form id="contactForm">
                         <div class="form-row">
@@ -1176,10 +1222,11 @@
                             <input type="tel" id="phone" placeholder="+91 98765 43210" required>
                         </div>
 
+                        <!-- FIXED: Service Interested In dropdown -->
                         <div class="form-group">
                             <label for="service">Service Interested In *</label>
-                            <select id="service" required>
-                                <option value="" disabled selected>Select a service</option>
+                            <select id="service" name="service" required>
+                                <option value="" disabled selected>-- Select a service --</option>
                                 <option value="facebook-ads">Facebook Ads</option>
                                 <option value="instagram-ads">Instagram Ads</option>
                                 <option value="google-ads">Google Ads</option>
@@ -1248,7 +1295,7 @@
                     <h4>Connect</h4>
                     <ul class="footer-links">
                         <li><a href="mailto:itsaknova@gmail.com">itsaknova@gmail.com</a></li>
-                        <li><a href="tel:+91990539784">+91 9905939784 </a></li>
+                        <li><a href="tel:+919905939784">+91 9905939784</a></li>
                         <li><a href="#">Instagram</a></li>
                         <li><a href="#">LinkedIn</a></li>
                     </ul>
@@ -1272,7 +1319,7 @@
             document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
         });
 
-        // Mobile menu - PERFECTLY FIXED
+        // Mobile menu
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
 
@@ -1282,7 +1329,6 @@
             navLinks.classList.toggle('active');
         });
 
-        // Close menu when clicking links
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', function() {
                 hamburger.classList.remove('active');
@@ -1290,7 +1336,6 @@
             });
         });
 
-        // Close menu when clicking outside
         document.addEventListener('click', function(e) {
             if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
                 hamburger.classList.remove('active');
