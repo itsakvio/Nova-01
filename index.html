@@ -289,7 +289,7 @@
             border-radius: 3px;
         }
 
-        /* ===== HERO SECTION - FIXED MOBILE ===== */
+        /* ===== HERO SECTION ===== */
         .hero {
             padding-top: 80px;
             padding-bottom: 40px;
@@ -377,7 +377,7 @@
             background: rgba(0, 168, 255, 0.1);
         }
 
-        /* ===== TRUST BADGE ===== */
+        /* ===== FIXED: TRUST BADGE - VERTICAL STARS ON MOBILE ===== */
         .trust-badge {
             margin-top: 20px;
             padding: 0 15px;
@@ -385,28 +385,60 @@
 
         .stars {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 5px;
+            gap: 8px;
             color: #FFD700;
-            font-size: 0.95rem;
-            flex-wrap: wrap;
+            font-size: 1.2rem;
         }
 
         .stars i {
-            font-size: 1rem;
+            font-size: 1.4rem;
+            margin: 0 2px;
+        }
+
+        .stars .stars-row {
+            display: flex;
+            gap: 5px;
+            justify-content: center;
         }
 
         .stars span {
             color: var(--soft-white);
-            margin-left: 5px;
-            white-space: nowrap;
+            font-size: 1rem;
+            font-weight: 500;
+            display: block;
+            margin-top: 5px;
         }
 
         .trust-badge p {
             color: rgba(245, 247, 250, 0.7);
             margin-top: 8px;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+        }
+
+        /* Tablet and Desktop - Horizontal stars */
+        @media (min-width: 768px) {
+            .stars {
+                flex-direction: row;
+                gap: 5px;
+                font-size: 1rem;
+            }
+            
+            .stars i {
+                font-size: 1.1rem;
+            }
+            
+            .stars .stars-row {
+                display: inline-flex;
+            }
+            
+            .stars span {
+                display: inline;
+                margin-top: 0;
+                margin-left: 5px;
+            }
         }
 
         /* ===== STATS SECTION ===== */
@@ -436,6 +468,13 @@
         .stat-item p {
             color: rgba(245, 247, 250, 0.7);
             font-size: 0.95rem;
+        }
+
+        @media (min-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
         }
 
         /* ===== SERVICES SECTION ===== */
@@ -511,6 +550,19 @@
             color: var(--nova-purple);
         }
 
+        @media (min-width: 768px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
         /* ===== PACKAGES SECTION ===== */
         .packages-grid {
             display: grid;
@@ -571,6 +623,13 @@
             font-size: 0.9rem;
         }
 
+        @media (min-width: 768px) {
+            .packages-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+
         /* ===== CASE STUDIES ===== */
         .case-studies-grid {
             display: grid;
@@ -622,7 +681,14 @@
             font-size: 0.9rem;
         }
 
-        /* ===== ANIMATED DROPDOWN ===== */
+        @media (min-width: 768px) {
+            .case-studies-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+
+        /* ===== FORM STYLES ===== */
         .form-group {
             margin-bottom: 18px;
             position: relative;
@@ -661,12 +727,7 @@
             background-size: 16px;
         }
 
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--electric-blue);
-            background: rgba(255, 255, 255, 0.1);
-        }
-
+        .form-group select:focus,
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
@@ -684,6 +745,12 @@
             display: grid;
             grid-template-columns: 1fr;
             gap: 18px;
+        }
+
+        @media (min-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
         /* ===== CONTACT SECTION ===== */
@@ -754,6 +821,13 @@
         .contact-text a {
             color: var(--electric-blue);
             text-decoration: none;
+        }
+
+        @media (min-width: 768px) {
+            .contact-wrapper {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
         }
 
         /* ===== FORM CONTAINER ===== */
@@ -956,6 +1030,19 @@
             padding-right: 15px;
         }
 
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .footer-grid {
+                grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            }
+        }
+
         /* ===== MOBILE MENU STYLES ===== */
         @media (max-width: 768px) {
             .hamburger {
@@ -1010,89 +1097,6 @@
             }
         }
 
-        /* ===== TABLET STYLES ===== */
-        @media (min-width: 768px) {
-            section {
-                padding: 80px 0;
-            }
-
-            .hero {
-                padding-top: 120px;
-                padding-bottom: 60px;
-            }
-
-            .hero-buttons {
-                flex-direction: row;
-            }
-
-            .btn-primary, .btn-secondary {
-                width: auto;
-                min-width: 200px;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 20px;
-            }
-
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-            }
-
-            .packages-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-            }
-
-            .case-studies-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-            }
-
-            .contact-wrapper {
-                grid-template-columns: 1fr 1fr;
-                gap: 40px;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .footer-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 40px;
-            }
-        }
-
-        /* ===== DESKTOP STYLES ===== */
-        @media (min-width: 1024px) {
-            .hamburger {
-                display: none;
-            }
-
-            .nav-links {
-                display: flex;
-                flex-direction: row;
-                position: static;
-                width: auto;
-                height: auto;
-                background: transparent;
-                padding: 0;
-                border-left: none;
-                gap: 30px;
-                overflow: visible;
-            }
-
-            .services-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .footer-grid {
-                grid-template-columns: 2fr 1fr 1fr 1.5fr;
-            }
-        }
-
         /* ===== VERY SMALL DEVICES ===== */
         @media (max-width: 380px) {
             .hero h1 {
@@ -1103,14 +1107,12 @@
                 font-size: 0.9rem;
             }
 
-            .stars {
-                font-size: 0.85rem;
-                flex-direction: column;
-                gap: 3px;
+            .stars i {
+                font-size: 1.2rem;
             }
-
+            
             .stars span {
-                margin-left: 0;
+                font-size: 0.9rem;
             }
 
             .stat-item h3 {
@@ -1195,13 +1197,16 @@
                     <a href="#work" class="btn-secondary">📁 View Our Work</a>
                 </div>
                 
+                <!-- FIXED: Stars now vertical on mobile with proper size -->
                 <div class="trust-badge" data-aos="fade-up" data-aos-delay="600">
                     <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
+                        <div class="stars-row">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
                         <span>4.9/5 (30+ reviews)</span>
                     </div>
                     <p>Trusted by 25+ businesses worldwide</p>
@@ -1234,6 +1239,7 @@
             </p>
 
             <div class="services-grid">
+                <!-- Facebook Ads -->
                 <div class="service-card" data-aos="fade-up" data-aos-delay="200">
                     <div class="service-icon"><i class="fab fa-facebook"></i></div>
                     <h3>Facebook Ads</h3>
@@ -1241,6 +1247,7 @@
                     <a href="#contact" class="service-link">Learn More →</a>
                 </div>
 
+                <!-- Instagram Ads -->
                 <div class="service-card" data-aos="fade-up" data-aos-delay="300">
                     <div class="service-icon"><i class="fab fa-instagram"></i></div>
                     <h3>Instagram Ads</h3>
@@ -1248,6 +1255,7 @@
                     <a href="#contact" class="service-link">Learn More →</a>
                 </div>
 
+                <!-- Google Ads -->
                 <div class="service-card" data-aos="fade-up" data-aos-delay="400">
                     <div class="service-icon"><i class="fab fa-google"></i></div>
                     <h3>Google Ads</h3>
@@ -1255,6 +1263,7 @@
                     <a href="#contact" class="service-link">Learn More →</a>
                 </div>
 
+                <!-- Web Development -->
                 <div class="service-card" data-aos="fade-up" data-aos-delay="500">
                     <div class="service-icon"><i class="fas fa-code"></i></div>
                     <h3>Web Development</h3>
@@ -1262,6 +1271,7 @@
                     <a href="#contact" class="service-link">Learn More →</a>
                 </div>
 
+                <!-- Landing Pages -->
                 <div class="service-card" data-aos="fade-up" data-aos-delay="600">
                     <div class="service-icon"><i class="fas fa-file-alt"></i></div>
                     <h3>Landing Pages</h3>
@@ -1269,6 +1279,7 @@
                     <a href="#contact" class="service-link">Learn More →</a>
                 </div>
 
+                <!-- Video Editing -->
                 <div class="service-card" data-aos="fade-up" data-aos-delay="700">
                     <div class="service-icon"><i class="fas fa-video"></i></div>
                     <h3>Video Editing</h3>
@@ -1288,6 +1299,7 @@
             </p>
 
             <div class="packages-grid">
+                <!-- Starter Package -->
                 <div class="package-card" data-aos="fade-up" data-aos-delay="200">
                     <h3>Starter Growth</h3>
                     <p style="color: rgba(245,247,250,0.7);">Perfect for businesses just starting</p>
@@ -1301,6 +1313,7 @@
                     <a href="#contact" class="btn-primary" style="width:100%; text-align:center;">Get Started</a>
                 </div>
 
+                <!-- Scale Package -->
                 <div class="package-card" data-aos="fade-up" data-aos-delay="300">
                     <h3>Scale Package</h3>
                     <p style="color: rgba(245,247,250,0.7);">For businesses ready to accelerate</p>
@@ -1315,6 +1328,7 @@
                     <a href="#contact" class="btn-primary" style="width:100%; text-align:center;">Get Started</a>
                 </div>
 
+                <!-- Domination Package -->
                 <div class="package-card featured" data-aos="fade-up" data-aos-delay="400">
                     <span class="package-badge">⭐ Most Popular</span>
                     <h3>Domination Package</h3>
@@ -1343,6 +1357,7 @@
             </p>
 
             <div class="case-studies-grid">
+                <!-- Case Study 1 -->
                 <div class="case-study" data-aos="fade-up" data-aos-delay="200">
                     <div class="case-study-category">E-COMMERCE BRAND</div>
                     <h3>Fashion Retailer</h3>
@@ -1352,6 +1367,7 @@
                     <a href="#" class="case-study-link">View Case Study →</a>
                 </div>
 
+                <!-- Case Study 2 -->
                 <div class="case-study" data-aos="fade-up" data-aos-delay="300">
                     <div class="case-study-category">SAAS STARTUP</div>
                     <h3>Project Management Tool</h3>
