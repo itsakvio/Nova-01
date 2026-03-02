@@ -693,25 +693,11 @@
             animation: none;
         }
 
-        /* Animated Select Options */
         .form-group select option {
             background: var(--dark-navy);
             color: var(--soft-white);
             padding: 15px;
             font-size: 1rem;
-            border: none;
-            animation: slideIn 0.3s ease;
-        }
-
-        .form-group select option:hover {
-            background: var(--electric-blue);
-            color: white;
-        }
-
-        /* Input field animations */
-        .form-group input,
-        .form-group textarea {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .form-group input:focus,
@@ -728,12 +714,6 @@
             border-color: var(--nova-purple);
             transform: translateY(-2px);
             box-shadow: 0 10px 20px rgba(138, 43, 226, 0.15);
-        }
-
-        /* Floating label animation */
-        .form-group.focused label {
-            color: var(--electric-blue);
-            transform: translateX(5px);
         }
 
         /* ===== CONTACT SECTION ===== */
@@ -876,10 +856,6 @@
             height: 300%;
         }
 
-        .submit-btn:active {
-            transform: translateY(-1px) scale(0.98);
-        }
-
         .submit-btn i {
             transition: transform 0.3s ease;
         }
@@ -888,39 +864,87 @@
             transform: translateX(8px) rotate(5deg);
         }
 
-        .form-status {
-            margin-top: 15px;
-            padding: 12px;
-            border-radius: 8px;
-            display: none;
+        /* Success Message */
+        .success-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #00A8FF, #8A2BE2);
+            padding: 30px 40px;
+            border-radius: 20px;
             text-align: center;
-            font-weight: 500;
+            z-index: 10000;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
             animation: slideInMessage 0.5s ease;
+            border: 2px solid white;
+            max-width: 90%;
+            width: 400px;
+        }
+
+        .success-message i {
+            font-size: 60px;
+            color: white;
+            margin-bottom: 20px;
+            animation: scaleIn 0.5s ease;
+        }
+
+        .success-message h2 {
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .success-message p {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+        }
+
+        .success-message button {
+            background: white;
+            color: #0B0F1A;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .success-message button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
         @keyframes slideInMessage {
             from {
                 opacity: 0;
-                transform: translateY(-20px);
+                transform: translate(-50%, -30%);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translate(-50%, -50%);
             }
         }
 
-        .form-status.success {
-            background: rgba(37, 211, 102, 0.2);
-            border: 1px solid #25D366;
-            color: #25D366;
-            display: block;
+        @keyframes scaleIn {
+            from { transform: scale(0); }
+            to { transform: scale(1); }
         }
 
-        .form-status.error {
-            background: rgba(255, 78, 205, 0.2);
-            border: 1px solid var(--accent-pink);
-            color: var(--accent-pink);
-            display: block;
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         /* ===== FOOTER ===== */
@@ -1060,7 +1084,6 @@
             }
         }
 
-        /* Loading animation for submit button */
         .submit-btn.loading {
             pointer-events: none;
             opacity: 0.8;
@@ -1291,7 +1314,7 @@
         </div>
     </section>
 
-    <!-- Contact Section - FIXED WITH WORKING FORM SUBMIT -->
+    <!-- Contact Section - FIXED: Redirects to Same Website -->
     <section id="contact" class="contact-section">
         <div class="container">
             <div class="contact-wrapper">
@@ -1335,16 +1358,13 @@
                 <div class="form-container" data-aos="fade-left">
                     <h3>Send Us a Message</h3>
                     
-                    <!-- FIXED: FormSubmit with proper redirect -->
-                    <form action="https://formsubmit.co/itsaknova@gmail.com" method="POST" id="contactForm">
-                        <!-- Important: These hidden fields control the form behavior -->
+                    <!-- FIXED: Using Fetch API to submit without redirect -->
+                    <form id="contactForm" onsubmit="submitForm(event)">
+                        <!-- These fields are for FormSubmit but we'll use fetch -->
                         <input type="hidden" name="_subject" value="🔥 New Lead from Nova X Growth Website!">
                         <input type="hidden" name="_template" value="table">
                         <input type="hidden" name="_captcha" value="false">
-                        <!-- FIXED: This will redirect to thank you page then back to home -->
-                        <input type="hidden" name="_next" value="https://formsubmit.co/itsaknova@gmail.com">
                         <input type="hidden" name="_autoresponse" value="✨ Thank you for contacting Nova X Growth! We've received your message and will get back to you within 24 hours. 🚀">
-                        <input type="hidden" name="_cc" value="itsaknova@gmail.com">
                         
                         <div class="form-row">
                             <div class="form-group">
@@ -1367,7 +1387,7 @@
                             <input type="tel" id="phone" name="Phone" placeholder="9905939784" required>
                         </div>
 
-                        <!-- ANIMATED DROPDOWN with emojis and smooth effects -->
+                        <!-- ANIMATED DROPDOWN with emojis -->
                         <div class="form-group">
                             <label for="service">Service Interested In *</label>
                             <select id="service" name="Service Interested In" required class="animated-select">
@@ -1391,13 +1411,20 @@
                             <i class="fas fa-paper-plane"></i>
                             Send Message
                         </button>
-
-                        <div class="form-status" id="formStatus"></div>
                     </form>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Success Message (Hidden by default) -->
+    <div id="successMessage" class="success-message" style="display: none;">
+        <i class="fas fa-check-circle"></i>
+        <h2>Thank You! 🎉</h2>
+        <p>Your message has been sent successfully.<br>We'll contact you within 24 hours.</p>
+        <button onclick="closeSuccessMessage()">Close</button>
+    </div>
+    <div id="overlay" class="overlay" style="display: none;"></div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -1513,33 +1540,58 @@
             }
         });
 
-        // Form submission with loading animation
-        const contactForm = document.getElementById('contactForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const formStatus = document.getElementById('formStatus');
-
-        contactForm.addEventListener('submit', function(e) {
+        // FIXED: Form submission with Fetch API - STAYS ON SAME PAGE
+        async function submitForm(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.innerHTML;
+            
             // Show loading state
             submitBtn.classList.add('loading');
             submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             
-            // FormSubmit will handle the rest
-            // The page will redirect to FormSubmit's success page
-        });
-
-        // Optional: Handle form submission success message if not redirected
-        window.addEventListener('load', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            if (urlParams.has('success')) {
-                formStatus.className = 'form-status success';
-                formStatus.innerHTML = 'Thank you! Your message has been sent successfully.';
-                formStatus.style.display = 'block';
+            // Collect form data
+            const formData = new FormData(form);
+            
+            try {
+                // Send to FormSubmit
+                const response = await fetch('https://formsubmit.co/ajax/itsaknova@gmail.com', {
+                    method: 'POST',
+                    body: formData
+                });
                 
-                setTimeout(() => {
-                    formStatus.style.display = 'none';
-                }, 5000);
+                const result = await response.json();
+                
+                if (result.success) {
+                    // Show success message
+                    showSuccessMessage();
+                    // Reset form
+                    form.reset();
+                } else {
+                    alert('Something went wrong. Please try again.');
+                }
+            } catch (error) {
+                alert('Network error. Please check your connection.');
+            } finally {
+                // Restore button
+                submitBtn.classList.remove('loading');
+                submitBtn.innerHTML = originalText;
             }
-        });
+        }
+
+        // Show success message
+        function showSuccessMessage() {
+            document.getElementById('successMessage').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+
+        // Close success message
+        function closeSuccessMessage() {
+            document.getElementById('successMessage').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
     </script>
 </body>
 </html>
